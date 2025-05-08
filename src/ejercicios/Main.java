@@ -14,53 +14,79 @@ Usar un array para almacenar las notas.
 Funciones para cada cálculo (calcularPromedio(), encontrarMaxima(), etc.).
 Validar que las notas estén entre 0 y 10*/
   public static final Logger log = Logger.getLogger(Main.class.getName());
+
   public static void main(String[] args) {
     //int cantidadEstudiantes= ingresarNro("la cantidad de estudiantes");
-    int cantidadNotas= ingresarNro("la cantidad de notas");
+    int cantidadNotas = ingresarNro("la cantidad de notas");
 
-    int[] notas= new int [cantidadNotas];
+    int[] notas = new int[cantidadNotas];
 
     cargarNotasEnArray(notas);
     mostrarNotas(notas);
-    log.info("La nota mas alta " +encontrarElMayor(notas));
-    log.info("La nota mas baja " +encontrarElMenor(notas));
-    log.info("El promedio es " +calcularPromedio(notas));
+    log.info("La nota mas alta " + encontrarElMayor(notas));
+    log.info("La nota mas baja " + encontrarElMenor(notas));
+    log.info("El promedio es " + calcularPromedio(notas));
+    log.info("Alumnos aprobados " + obtenerCantAprobados(notas));
 
   }
- public static int ingresarNro(String mensaje) {
+
+  public static int ingresarNro(String mensaje) {
     int nro;
-    log.info("Por favor ingrese la cantidad de "+mensaje);
+    log.info("Por favor ingrese la cantidad de " + mensaje);
     Scanner sc = new Scanner(System.in);
-    nro=sc.nextInt();
+    nro = sc.nextInt();
     return nro;
- }
- public static void cargarNotasEnArray(int[] notas) {
-    for (int i=0; i< notas.length; i++){
-      notas[i]= ingresarNro("la nota del estudiante "+(i+1));
-    }
- }
- public static void mostrarNotas(int[] notas) {
-    for (int i=0; i< notas.length; i++){
-      log.info("La nota "+ (i+1) + "es " +notas[i]);
-    }
- }
- public static int encontrarElMayor(int[] notas) {
-    int mayor=0;
-    for (int i=0; i< notas.length; i++){
-      mayor=(notas[i]>mayor)? notas[i]: mayor;
-    }return mayor;
- }
-  public static int encontrarElMenor(int[] notas) {
-    int menor=10;
-    for (int i=0; i< notas.length; i++){
-      menor=(notas[i]<menor)? notas[i]: menor;
-    }return menor;
   }
+
+  public static void cargarNotasEnArray(int[] notas) {
+    for (int i = 0; i < notas.length; i++) {
+      notas[i] = ingresarNro("la nota del estudiante " + (i + 1));
+    }
+  }
+
+  public static void mostrarNotas(int[] notas) {
+    for (int i = 0; i < notas.length; i++) {
+      log.info("La nota " + (i + 1) + "es " + notas[i]);
+    }
+  }
+
+  public static int obtenerCantAprobados(int[] notas) {
+    int alumnosAprobados = 0;
+    for (int i = 0; i < notas.length; i++) {
+      if (notas[i] >= 6) {
+        alumnosAprobados++;
+      }
+    }
+    return alumnosAprobados;
+  }
+
+  public static int encontrarElMayor(int[] notas) {
+    int mayor = 0;
+    for (int i = 0; i < notas.length; i++) {
+      mayor = (notas[i] > mayor) ? notas[i] : mayor;
+    }
+    return mayor;
+  }
+
+  public static int encontrarElMenor(int[] notas) {
+    int menor = 10;
+    for (int i = 0; i < notas.length; i++) {
+      menor = (notas[i] < menor) ? notas[i] : menor;
+    }
+    return menor;
+  }
+
   public static int calcularPromedio(int[] notas) {
+    int suma = 0;
+    for (int i = 0; i < notas.length; i++) {
+      suma += notas[i];
+    }
+
     int promedio = 0;
-    for (int i=0; i< notas.length; i++) {
+    if (notas.length > 0) {
+      promedio = suma / notas.length; // División entera
+    }
 
-
-    }return promedio;
+    return promedio;
   }
 }
