@@ -4,6 +4,12 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Ejercicio3 {
+  /*Ejercicio 3:   Simular un inventario de productos (usar un array para nombres y otro para cantidades). Funciones para:
+agregarProducto() (nombre y cantidad).
+buscarProducto() (por nombre).
+actualizarStock() (incrementar/disminuir).
+mostrarInventario().
+Validar que no se repitan productos (usar condicionales).*/
   public static final Logger log = Logger.getLogger(Ejercicio3.class.getName());
 
   public static void main(String[] args) {
